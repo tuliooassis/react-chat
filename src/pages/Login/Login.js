@@ -27,26 +27,22 @@ export const Login = ({isLoggedIn, setIsLoggedIn}) => {
     login()
   }
 
-  const LoginFields = () => {
-    return <>
-      <TextField id="username" label="Username" value={username} onChange={(event)=> {setUsername(event.target.value)}}/>
-      <TextField id="password" label="Password" value={password} onChange={(event)=> {setPassword(event.target.value)}}/>
-      <Button variant="contained" onClick={onLogin}>Log in</Button> 
-    </>
-  }
-
   const onLogout = () => {
     localStorage.removeItem('user')
     setIsLoggedIn(false)
     logout()
   }
 
-  const LoggedFields = () => {
-    return <>
+  return isLoggedIn ? (
+    <>
       You are {username}.
-      <Button variant="contained" onClick={onLogout}>Logout</Button> 
+      <Button variant="contained" onClick={onLogout}>Logout</Button>
     </>
-  }
-
-  return isLoggedIn ? <LoggedFields/> : <LoginFields />
+  ) : (
+    <>
+      <TextField id="username" label="Username" value={username} onChange={(event)=> {setUsername(event.target.value)}}/>
+      <TextField id="password" label="Password" type="password" value={password} onChange={(event)=> {setPassword(event.target.value)}}/>
+      <Button variant="contained" onClick={onLogin}>Log in</Button>
+    </>
+  )
 }

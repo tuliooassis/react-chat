@@ -18,6 +18,9 @@ You can do:
 Tip: you can update the available data by clicking on the update button
 
 ### Running the application 
+
+You should add a `.env` file based on the `.env.example` with correct credentials.
+
 For development proposals, you can run:
 
 `./run-app-deploy.sh dev` 

@@ -15,6 +15,12 @@ You can do:
   - Add a user with random username and default password `123456`
   - Delete a specific user (in progress)
 
+
+### Next Steps
+- Login validation
+- Store the XMPP client session
+- Send messages with any texts
+
 Tip: you can update the available data by clicking on the update button
 
 ### Running the application 

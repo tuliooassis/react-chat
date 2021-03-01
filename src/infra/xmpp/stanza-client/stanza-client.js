@@ -3,6 +3,7 @@ import * as XMPP from 'stanza';
 const WEBSOCKET = process.env.REACT_APP_WEBSOCKET
 const HOST = process.env.REACT_APP_DOMAIN
 
+// eslint-disable-next-line
 const log = (name, data) => {
   console.log(`Event ${name}`, data)
 }

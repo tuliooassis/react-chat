@@ -19,6 +19,7 @@ export const Login = ({isLoggedIn, setIsLoggedIn}) => {
       setPassword(loggedUser.password)
       login()
     }
+  // eslint-disable-next-line
   }, [])
 
   const onLogin = () => {

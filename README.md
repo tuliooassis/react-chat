@@ -15,6 +15,8 @@ You can do:
   - Add a user with random username and default password `123456`
   - Delete a specific user (in progress)
 
+Tip: you can update the available data by clicking on the update button
+
 ### Running the application 
 For development proposals, you can run:
 

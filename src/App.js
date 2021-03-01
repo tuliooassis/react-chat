@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Login } from './pages/Login/Login';
 import { Rooms } from './containers/Rooms';
 import { OnlineUsers } from './containers/OnlineUsers';
+import { ManagerUser } from './containers/ManagerUser';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -16,6 +17,7 @@ const App = () => {
           <>
             <Rooms />
             <OnlineUsers />
+            <ManagerUser />
           </>
         ): null }
       </header>

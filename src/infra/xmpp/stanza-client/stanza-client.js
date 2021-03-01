@@ -55,6 +55,10 @@ export const joinRoom = async (room, nick) => {
   return roomMembers
 }
 
+export const deleteAccount = async (user) => {
+  return await globalClient?.deleteAccount(user)
+}
+
 export const logout = () => {
   globalClient?.disconnect()
   globalClient = null

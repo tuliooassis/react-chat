@@ -34,3 +34,13 @@ export const getConnectedUsers = async () => {
   const response = await instance.get('/connected_users_info')
   return response.data
 }
+
+export const getPresence = async (user) => {
+  const response = await instance.post('/get_presence', {
+    user,
+    host: HOST
+  })
+  return response.data
+}
+
+

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Faker from 'faker';
 import { Button, List, ListItem, ListItemText } from '@material-ui/core';
 import { RoomCounter } from '../containers/RoomCounter';
-import { list, create } from '../infra/ejabberd-client/muc-client';
+import { list, create, destroy } from '../infra/ejabberd-client/muc-client';
 import { joinRoom, sendMessage } from '../infra/xmpp/stanza-client/stanza-client';
 
 export const Rooms = () => {
@@ -13,22 +13,29 @@ export const Rooms = () => {
     setRooms(rooms)
   }
 
-  const onJoinRoom = (name) => {
+  const sendHello = (sendTo) => sendMessage(sendTo, 'Hello', 'groupchat')
+
+  const onJoinRoom = async (name) => {
     const loggedUser = JSON.parse(localStorage.getItem('user'))
-    joinRoom(name, loggedUser.username)
+    await joinRoom(name, loggedUser.username)
     get()
   }
 
-  const sendHello = (sendTo) => sendMessage(sendTo, 'Hello', 'groupchat')
-
-  const onCreateRoom = () => {
+  const onCreateRoom = async () => {
     const name = Faker.name.firstName()
-    create({ name })
+    await create({ name })
+    get()
+  } 
+  
+  const onDeleteRoom = async (name) => {
+    const shortName = name.split('@')[0]
+    await destroy({ name: shortName })
     get()
   }
 
   const actions = [
     { onClick: onJoinRoom, name: 'Join'},
+    { onClick: onDeleteRoom, name: 'Delete'},
     { onClick: sendHello, name: 'Send Hello'},
   ]
 

@@ -30,10 +30,12 @@ export const create = async ({ name }) => {
 }
 
 export const destroy = async ({ name }) => {
-  return await instance.post('/destroy_room', {
+  const response = await instance.post('/destroy_room', {
     service: MUC_SERVICE,
     name
   })
+
+  return response.data
 }
 
 export const list = async () => {

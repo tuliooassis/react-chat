@@ -4,7 +4,7 @@ import { getAllUsers, register, getPresence } from '../infra/ejabberd-client/use
 import { deleteAccount } from '../infra/xmpp/stanza-client/stanza-client';
 import { Button, List, ListItem, ListItemText } from '@material-ui/core';
 
-export const ManagerUser = () => {
+export const UserManagement = () => {
   const [users, setUsers] = useState([])
 
   const get = async () => {
@@ -30,15 +30,17 @@ export const ManagerUser = () => {
     { onClick: onDeleteUser, name: 'Delete'}
   ]
 
-  return <List subheader={'Manager Users'}>
-    { users.map((item, index) => {
-      return <ListItem key={index}>
-        <ListItemText secondary={item}/>
-        { actions.map((action, index) => <Button key={index} onClick={() => action.onClick(item)}>{action.name}</Button>) }
-      </ListItem>
-      })
-    }
-    <Button onClick={get}>Refresh</Button>
-    <Button onClick={onCreateUser}>+ Random User</Button>
-  </List>
+  return <div className="App-container">
+    <List subheader={'User Management'}>
+      { users.map((item, index) => {
+        return <ListItem key={index}>
+          <ListItemText secondary={item}/>
+          { actions.map((action, index) => <Button key={index} onClick={() => action.onClick(item)}>{action.name}</Button>) }
+        </ListItem>
+        })
+      }
+      <Button onClick={get}>Refresh</Button>
+      <Button onClick={onCreateUser}>+ Random User</Button>
+    </List>
+  </div>
 }

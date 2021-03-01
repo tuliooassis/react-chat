@@ -39,16 +39,18 @@ export const Rooms = () => {
     { onClick: sendHello, name: 'Send Hello'},
   ]
 
-  return <List subheader={'Available Rooms'}>
-    { rooms.map((item, index) => {
-      return <ListItem key={`item-${index}`}>
-        <ListItemText secondary={item}/>
-        <RoomCounter name={item}/>
-        { actions.map((action, index) => <Button key={`action-${index}`} onClick={() => action.onClick(item)}>{action.name}</Button>) }
-      </ListItem>
-      })
-    }
-    <Button onClick={get}>Refresh</Button>
-    <Button onClick={onCreateRoom}>+ Random Room</Button>
-  </List>
+  return <div className="App-container">
+    <List subheader={'Available Rooms'}>
+      { rooms.map((item, index) => {
+        return <ListItem key={`item-${index}`}>
+          <ListItemText secondary={item}/>
+          <RoomCounter name={item}/>
+          { actions.map((action, index) => <Button key={`action-${index}`} onClick={() => action.onClick(item)}>{action.name}</Button>) }
+        </ListItem>
+        })
+      }
+      <Button onClick={get}>Refresh</Button>
+      <Button onClick={onCreateRoom}>+ Random Room</Button>
+    </List>
+  </div>
 }

@@ -17,14 +17,16 @@ export const OnlineUsers = () => {
     { onClick: sendHi, name: 'Send Hi'}
   ]
 
-  return <List subheader={'Connected Users'}>
-    { users.map((item, index) => {
-      return <ListItem key={index}>
-        <ListItemText secondary={item['jid']}/>
-        { actions.map((action, index) => <Button key={index} onClick={() => action.onClick(item)}>{action.name}</Button>) }
-      </ListItem>
-      })
-    }
-    <Button onClick={get}>Refresh</Button>
-  </List>
+  return <div className="App-container">
+    <List subheader={'Connected Users'}>
+      { users.map((item, index) => {
+        return <ListItem key={index}>
+          <ListItemText secondary={item['jid']}/>
+          { actions.map((action, index) => <Button key={index} onClick={() => action.onClick(item)}>{action.name}</Button>) }
+        </ListItem>
+        })
+      }
+      <Button onClick={get}>Refresh</Button>
+    </List>
+  </div>
 }

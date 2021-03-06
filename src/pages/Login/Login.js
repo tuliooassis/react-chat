@@ -52,5 +52,5 @@ export const Login = ({ isLoggedIn, setIsLoggedIn }) => {
 
 Login.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
-  setIsLoggedIn: PropTypes.function.isRequired
+  setIsLoggedIn: PropTypes.func.isRequired
 }

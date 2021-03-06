@@ -12,11 +12,11 @@ const instance = axios.create({
     username: ADMIN_USER,
     password: ADMIN_PASSWORD
   }
-});
+})
 
 export const register = async ({ user, password }) => {
   const response = await instance.post('/register', {
-    'host': HOST,
+    host: HOST,
     user,
     password
   })
@@ -25,7 +25,7 @@ export const register = async ({ user, password }) => {
 
 export const getAllUsers = async () => {
   const response = await instance.post('/registered_users', {
-    'host': HOST,
+    host: HOST
   })
   return response.data
 }
@@ -42,5 +42,3 @@ export const getPresence = async (user) => {
   })
   return response.data
 }
-
-

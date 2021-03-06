@@ -1,4 +1,4 @@
-import * as XMPP from 'stanza';
+import * as XMPP from 'stanza'
 
 const WEBSOCKET = process.env.REACT_APP_WEBSOCKET
 const HOST = process.env.REACT_APP_DOMAIN
@@ -18,8 +18,8 @@ export const create = (username, password) => {
     password,
     server: HOST,
     transports: {
-      websocket: WEBSOCKET,
-    },
+      websocket: WEBSOCKET
+    }
   }
 
   const client = XMPP.createClient(config)
@@ -31,19 +31,19 @@ export const create = (username, password) => {
     client.getRoster()
     client.sendPresence()
   })
-  
+
   client.on('message', msg => {
-    if(msg.body) alert(`You received ${msg.body} from ${msg.from}`)
-  })  
+    if (msg.body) alert(`You received ${msg.body} from ${msg.from}`)
+  })
 
   client.connect()
   return client
 }
 
 export const sendMessage = (to, body, type) => {
-  globalClient?.sendMessage({ 
-    to, 
-    from: globalClient.jid, 
+  globalClient?.sendMessage({
+    to,
+    from: globalClient.jid,
     body,
     type
   })

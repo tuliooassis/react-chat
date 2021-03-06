@@ -13,11 +13,11 @@ const instance = axios.create({
     username: ADMIN_USER,
     password: ADMIN_PASSWORD
   }
-});
+})
 
 export const create = async ({ name }) => {
   const response = await instance.post('/create_room_with_opts', {
-    'host': HOST,
+    host: HOST,
     service: MUC_SERVICE,
     name,
     options: {
@@ -40,7 +40,7 @@ export const destroy = async ({ name }) => {
 
 export const list = async () => {
   const response = await instance.post('/muc_online_rooms', {
-    service: MUC_SERVICE,
+    service: MUC_SERVICE
   })
 
   return response.data

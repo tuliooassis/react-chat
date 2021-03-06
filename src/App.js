@@ -1,10 +1,10 @@
-import './App.css';
-import React, { useState } from 'react';
-import { Login } from './pages/Login/Login';
-import { Rooms } from './containers/Rooms';
-import { OnlineUsers } from './containers/OnlineUsers';
-import { UserManagement } from './containers/UserManagement';
-import { Divider } from '@material-ui/core';
+import './App.css'
+import React, { useState } from 'react'
+import { Login } from './pages/Login/Login'
+import { Rooms } from './containers/Rooms'
+import { OnlineUsers } from './containers/OnlineUsers'
+import { UserManagement } from './containers/UserManagement'
+import { Divider } from '@material-ui/core'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -16,7 +16,8 @@ const App = () => {
 
       </header>
 
-      { isLoggedIn ? (
+      { isLoggedIn
+        ? (
           <div className="App-content">
             <Rooms />
             <Divider />
@@ -24,9 +25,10 @@ const App = () => {
             <Divider />
             <UserManagement />
           </div>
-        ): null }
+          )
+        : null }
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

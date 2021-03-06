@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Faker from 'faker';
-import { Button, List, ListItem, ListItemText } from '@material-ui/core';
-import { RoomCounter } from '../containers/RoomCounter';
-import { list, create, destroy } from '../infra/ejabberd-client/muc-client';
-import { joinRoom, sendMessage } from '../infra/xmpp/stanza-client/stanza-client';
+import React, { useState } from 'react'
+import Faker from 'faker'
+import { Button, List, ListItem, ListItemText } from '@material-ui/core'
+import { RoomCounter } from '../containers/RoomCounter'
+import { list, create, destroy } from '../infra/ejabberd-client/muc-client'
+import { joinRoom, sendMessage } from '../infra/xmpp/stanza-client/stanza-client'
 
 export const Rooms = () => {
   const [rooms, setRooms] = useState([])
@@ -25,8 +25,8 @@ export const Rooms = () => {
     const name = Faker.name.firstName()
     await create({ name })
     get()
-  } 
-  
+  }
+
   const onDeleteRoom = async (name) => {
     const shortName = name.split('@')[0]
     await destroy({ name: shortName })
@@ -34,9 +34,9 @@ export const Rooms = () => {
   }
 
   const actions = [
-    { onClick: onJoinRoom, name: 'Join'},
-    { onClick: onDeleteRoom, name: 'Delete'},
-    { onClick: sendHello, name: 'Send Hello'},
+    { onClick: onJoinRoom, name: 'Join' },
+    { onClick: onDeleteRoom, name: 'Delete' },
+    { onClick: sendHello, name: 'Send Hello' }
   ]
 
   return <div className="App-container">
@@ -47,7 +47,7 @@ export const Rooms = () => {
           <RoomCounter name={item}/>
           { actions.map((action, index) => <Button key={`action-${index}`} onClick={() => action.onClick(item)}>{action.name}</Button>) }
         </ListItem>
-        })
+      })
       }
       <Button onClick={get}>Refresh</Button>
       <Button onClick={onCreateRoom}>+ Random Room</Button>

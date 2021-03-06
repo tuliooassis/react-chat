@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Faker from 'faker';
-import { getAllUsers, register, getPresence } from '../infra/ejabberd-client/user-client';
-import { deleteAccount } from '../infra/xmpp/stanza-client/stanza-client';
-import { Button, List, ListItem, ListItemText } from '@material-ui/core';
+import React, { useState } from 'react'
+import Faker from 'faker'
+import { getAllUsers, register, getPresence } from '../infra/ejabberd-client/user-client'
+import { deleteAccount } from '../infra/xmpp/stanza-client/stanza-client'
+import { Button, List, ListItem, ListItemText } from '@material-ui/core'
 
 export const UserManagement = () => {
   const [users, setUsers] = useState([])
@@ -18,16 +18,16 @@ export const UserManagement = () => {
     await register({ user, password: defaultPassword })
     get()
   }
-  
+
   const onDeleteUser = async (name) => {
     const userData = await getPresence(name)
     const deleteres = await deleteAccount(userData.jid)
     console.log(deleteres)
     get()
   }
-  
+
   const actions = [
-    { onClick: onDeleteUser, name: 'Delete'}
+    { onClick: onDeleteUser, name: 'Delete' }
   ]
 
   return <div className="App-container">
@@ -37,7 +37,7 @@ export const UserManagement = () => {
           <ListItemText secondary={item}/>
           { actions.map((action, index) => <Button key={index} onClick={() => action.onClick(item)}>{action.name}</Button>) }
         </ListItem>
-        })
+      })
       }
       <Button onClick={get}>Refresh</Button>
       <Button onClick={onCreateUser}>+ Random User</Button>

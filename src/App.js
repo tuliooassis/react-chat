@@ -9,28 +9,31 @@ import { Divider } from '@material-ui/core'
 import { AuthenticatedUserProvider } from './providers/AuthenticatedUserProvider'
 import { AuthRoute } from './routers/AuthRoute'
 import { LogoutButton } from './components/LogoutButton'
+import { Header } from './containers/Header'
 
 const App = () => {
   return (
     <div className="App">
       <AuthenticatedUserProvider>
-        <BrowserRouter>
-          <Switch>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <AuthRoute isProtected path="/">
-              <LogoutButton />
-              <div className="App-content">
-                <Rooms />
-                <Divider />
-                <OnlineUsers />
-                <Divider />
-                <UserManagement />
-              </div>
-            </AuthRoute>
-          </Switch>
-        </BrowserRouter>
+        <Header>
+          <BrowserRouter>
+            <Switch>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <AuthRoute isProtected path="/">
+                <LogoutButton />
+                <div className="App-content">
+                  <Rooms />
+                  <Divider />
+                  <OnlineUsers />
+                  <Divider />
+                  <UserManagement />
+                </div>
+              </AuthRoute>
+            </Switch>
+          </BrowserRouter>
+        </Header>
       </AuthenticatedUserProvider>
     </div>
   )

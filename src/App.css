@@ -1,14 +1,5 @@
-.App {
-  text-align: center;
-}
-
-.App-header {
-  min-height: 15vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  font-size: calc(10px + 2vmin);
+.App, #root {
+  height: 100%;
 }
 
 .App-container {
@@ -23,4 +14,16 @@
   flex-direction: column;
   justify-content: space-around;
   min-height: 60vh;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.login-container {
+  display: flex;
 }

@@ -25,7 +25,7 @@ export const create = (username, password) => {
   const client = XMPP.createClient(config)
   globalClient = client
 
-  // client.on('*', log);
+  client.on('*', log)
 
   client.on('session:started', () => {
     client.getRoster()

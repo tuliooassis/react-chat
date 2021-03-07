@@ -1,56 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { Button, TextField } from '@material-ui/core'
-import { create, logout } from '../../infra/xmpp/stanza-client/stanza-client'
+import React, { useContext } from 'react'
+import { useForm, Controller } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
+import { Button, Container, TextField } from '@material-ui/core'
+import { AuthenticatedUserContext } from '../../contexts/AuthenticatedUserContext'
 
-export const Login = ({ isLoggedIn, setIsLoggedIn }) => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+export const Login = () => {
+  const { authenticate } = useContext(AuthenticatedUserContext)
+  const { control, handleSubmit } = useForm()
+  const history = useHistory()
 
-  const login = async () => {
-    await create(username, password)
-    setIsLoggedIn(true)
+  const onSubmit = ({ username, password }) => {
+    authenticate({ username, password })
+    history.push('/')
   }
 
-  useEffect(() => {
-    const loggedUser = JSON.parse(localStorage.getItem('user'))
-
-    if (loggedUser) {
-      setUsername(loggedUser.username)
-      setPassword(loggedUser.password)
-      login()
-    }
-  // eslint-disable-next-line
-  }, [])
-
-  const onLogin = () => {
-    localStorage.setItem('user', JSON.stringify({ username, password }))
-    login()
-  }
-
-  const onLogout = () => {
-    localStorage.removeItem('user')
-    setIsLoggedIn(false)
-    logout()
-  }
-
-  return isLoggedIn
-    ? (
-    <>
-      You are {username}.
-      <Button variant="contained" onClick={onLogout}>Logout</Button>
-    </>
-      )
-    : (
-    <>
-      <TextField id="username" label="Username" value={username} onChange={(event) => { setUsername(event.target.value) }}/>
-      <TextField id="password" label="Password" type="password" value={password} onChange={(event) => { setPassword(event.target.value) }}/>
-      <Button variant="contained" onClick={onLogin}>Log in</Button>
-    </>
-      )
-}
-
-Login.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-  setIsLoggedIn: PropTypes.func.isRequired
+  return <Container maxWidth="sm">
+    <form onSubmit={handleSubmit(onSubmit)} className="login">
+      <Controller
+        name="username"
+        control={control}
+        defaultValue=""
+        render={({ onChange, value }) => <TextField label="Username" onChange={onChange} value={value} />}
+      />
+      <Controller
+        name="password"
+        control={control}
+        defaultValue=""
+        render={({ onChange, value }) => <TextField label="Password" type="password" onChange={onChange} value={value} />}
+      />
+      <Button variant="contained" type="submit">Login</Button>
+    </form>
+  </Container>
 }

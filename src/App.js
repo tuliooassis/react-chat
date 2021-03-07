@@ -8,6 +8,7 @@ import { UserManagement } from './containers/UserManagement'
 import { Divider } from '@material-ui/core'
 import { AuthenticatedUserProvider } from './providers/AuthenticatedUserProvider'
 import { AuthRoute } from './routers/AuthRoute'
+import { LogoutButton } from './components/LogoutButton'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
               <Login />
             </Route>
             <AuthRoute isProtected path="/">
+              <LogoutButton />
               <div className="App-content">
                 <Rooms />
                 <Divider />

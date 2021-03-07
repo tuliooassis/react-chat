@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { AuthenticatedUserContext } from '../contexts/AuthenticatedUserContext'
@@ -13,18 +13,22 @@ export const AuthenticatedUserProvider = ({ children }) => {
 
   const authenticate = async ({ username, password }) => {
     setAuthenticatedUser({ username, password })
-  }
-
-  useEffect(() => {
-    const { username, password } = authenticatedUser
 
     localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify({ username, password }))
     create(username, password)
-  }, [authenticatedUser])
+  }
 
+  const logout = () => {
+    localStorage.removeItem(LOCAL_STORAGE_USER_KEY)
+    setAuthenticatedUser({})
+  }
+
+  const isAuthenticated = !!authenticatedUser.username
   const authenticatedUserContextValue = {
     ...authenticatedUser,
-    authenticate
+    isAuthenticated,
+    authenticate,
+    logout
   }
 
   return <AuthenticatedUserContext.Provider value={authenticatedUserContextValue}>
